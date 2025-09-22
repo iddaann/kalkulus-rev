@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Optimasi Biaya Layanan Streaming</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-chart-line"></i> Optimasi Biaya Layanan Streaming</h1>
+            <p class="description">Analisis biaya bulanan berdasarkan penggunaan penyimpanan dengan fungsi piecewise</p>
+        </header>
+        
+        <div class="card input-section">
+            <div class="card-header">
+                <h2><i class="fas fa-sliders-h"></i> Input Parameter</h2>
+            </div>
+            <div class="card-body">
+                <div class="input-group">
+                    <label for="storageInput">Perkiraan Penggunaan Penyimpanan (GB):</label>
+                    <div class="input-with-icon">
+                        <i class="fas fa-database"></i>
+                        <input type="number" id="storageInput" min="0" max="600" value="180">
+                    </div>
+                </div>
+                <button id="calculateBtn" class="btn-primary">
+                    <i class="fas fa-calculator"></i> Hitung Biaya Optimal
+                </button>
+            </div>
+        </div>
+        
+        <div class="results-grid">
+            <div class="card">
+                <div class="card-header">
+                    <h2><i class="fas fa-receipt"></i> Biaya per Paket</h2>
+                </div>
+                <div class="card-body">
+                    <div id="costResult"></div>
+                </div>
+            </div>
+            
+            <div class="card">
+                <div class="card-header">
+                    <h2><i class="fas fa-trophy"></i> Rekomendasi Optimal</h2>
+                </div>
+                <div class="card-body">
+                    <div id="optimalResult"></div>
+                </div>
+            </div>
+            
+            <div class="card">
+                <div class="card-header">
+                    <h2><i class="fas fa-chart-bar"></i> Analisis Kekontinuan</h2>
+                </div>
+                <div class="card-body">
+                    <div id="continuityResult"></div>
+                </div>
+            </div>
+            
+            <div class="card">
+                <div class="card-header">
+                    <h2><i class="fas fa-calculator"></i> Analisis Turunan</h2>
+                </div>
+                <div class="card-body">
+                    <div id="derivativeResult"></div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="card chart-section">
+            <div class="card-header">
+                <h2><i class="fas fa-chart-area"></i> Grafik Fungsi Biaya</h2>
+            </div>
+            <div class="card-body">
+                <div class="chart-container">
+                    <canvas id="costChart"></canvas>
+                </div>
+            </div>
+        </div>
+        
+        <div class="card analysis-section">
+            <div class="card-header">
+                <h2><i class="fas fa-microscope"></i> Analisis Matematis</h2>
+            </div>
+            <div class="card-body">
+                <div class="analysis-content">
+                    <div class="analysis-column">
+                        <h3><i class="fas fa-project-diagram"></i> Fungsi Biaya C(x)</h3>
+                        <p>Fungsi piecewise untuk biaya bulanan:</p>
+                        <div class="function-definition">
+                            <div class="function-case">
+                                <span class="case-condition">Basic (0 ≤ x ≤ 50):</span>
+                                <span class="case-formula">C(x) = 50.000 + 2.000·max(0, x-50)</span>
+                            </div>
+                            <div class="function-case">
+                                <span class="case-condition">Standard (50 < x ≤ 200):</span>
+                                <span class="case-formula">C(x) = 90.000 + 2.000·max(0, x-200)</span>
+                            </div>
+                            <div class="function-case">
+                                <span class="case-condition">Premium (x > 200):</span>
+                                <span class="case-formula">C(x) = 150.000 + 2.000·max(0, x-500)</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="analysis-column">
+                        <h3><i class="fas fa-exclamation-circle"></i> Implikasi bagi Customer</h3>
+                        <p>Ketidakkontinuan pada x=50 dan x=200 berarti terjadi lompatan biaya yang signifikan ketika melewati batas paket. Customer perlu berhati-hati dalam memperkirakan penggunaan penyimpanan agar tidak mengalami kenaikan biaya yang tiba-tiba.</p>
+                        
+                        <div class="implication">
+                            <i class="fas fa-lightbulb"></i>
+                            <div class="implication-content">
+                                <h4>Tips Penghematan</h4>
+                                <p>Pilih paket yang sesuai dengan kebutuhan rata-rata dan pertimbangkan upgrade sebelum mencapai batas kuota untuk menghindari biaya tambahan yang tinggi.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <p>© 2023 Optimasi Biaya Layanan Streaming | Project 1 - Kalkulus untuk Informatika</p>
+    </footer>
+    
+    <script src="script.js"></script>
+</body>
+</html>
